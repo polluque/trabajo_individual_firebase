@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "681648558392",
+    "project_id": "cod-task-pol",
+    "storage_bucket": "cod-task-pol.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681648558392:android:c5529ba1e905ea02d731cd",
+        "android_client_info": {
+          "package_name": "com.polluque.firetask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681648558392-d5lvkk4gl28673e62brueo7fttkubo2u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6aou6kwCvlZXfgJXsbu5GA3gC2JpISBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681648558392-d5lvkk4gl28673e62brueo7fttkubo2u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

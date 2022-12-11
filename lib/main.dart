@@ -1,7 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firetask/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
-void main(){
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();//inicializacion que permite que firebase utilize codigo nativo 
+  await Firebase.initializeApp();// llamando e importado firebase en nuestro proyecto 
+
   runApp(MyApp());
 }
 
