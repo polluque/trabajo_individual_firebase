@@ -1,12 +1,13 @@
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firetask/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() async{
-  WidgetsFlutterBinding.ensureInitialized();//inicializacion que permite que firebase utilize codigo nativo 
-  await Firebase.initializeApp();// llamando e importado firebase en nuestro proyecto 
+WidgetsFlutterBinding.ensureInitialized();
+await Firebase.initializeApp();
+runApp(MyApp());
 
-  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,8 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FIRETASK',
-      debugShowMaterialGrid: false,
+      debugShowCheckedModeBanner: true,
       home: HomePage(),
     );
-      }
+ }
 }
+/*async{
+
+  WidgetsFlutterBinding.ensureInitialized();//inicializacion que permite que firebase utilize codigo nativo 
+  await Firebase.initializeApp();// llamando e importado firebase en nuestro proyecto 
+
+  runApp(MyApp());
+}*/
