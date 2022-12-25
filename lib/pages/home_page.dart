@@ -40,7 +40,48 @@ class HomePage extends StatelessWidget {
                 });
               }, 
               child: Text('obtener la data')
-              )
+              ),
+            
+            ElevatedButton(
+              onPressed: () {
+                  tasksReference.add(
+                    {
+                      'title': 'ir de compras al super 3',
+                      'description': 'debemos comprar comida para todo la mes',
+                    },
+                  ).then((DocumentReference value) {
+                    print(value.id);
+                  }).catchError((error){
+                    print('ocurrio un error en el registro');
+                  }).whenComplete((){
+                    print('el resgistro ha terminado');
+                  });
+              }, 
+              child:Text(
+                'agregar documento',
+            ),
+            ),
+    //actualizaciones 
+            ElevatedButton(onPressed: (){
+              tasksReference.doc('8ElHEKI7nifYRk6EYJhw').update(
+                {
+                  'title': 'ver la serie de dahmer',
+                  'description' : 'empieza a las 8 pm',
+                },
+              ).catchError((error){
+                    print('ocurrio un error en la actualizacion');
+                  },
+                  ).whenComplete(
+                    (){
+                    print('actualizacion terminada');
+                  },
+                  );
+            }, 
+
+            child: Text('actualizar documento'
+            ),
+            ),
+
           ],
         ),
       ),
