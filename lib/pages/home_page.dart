@@ -82,6 +82,43 @@ class HomePage extends StatelessWidget {
             ),
             ),
 
+            ElevatedButton(onPressed: () {
+              tasksReference.doc('PNWDAEdSqHfVJMZkIVcZ').delete().catchError((error){
+                print('ocurrio un error en la eliminacion');
+              },
+              ).whenComplete(() {
+                  print('elimacion de documento completada');
+              },
+              );
+            }, 
+            
+            child: Text(
+              'eliminar documento',
+            ),
+            ),
+              // crear documento personalizado
+               ElevatedButton(onPressed: () {
+              tasksReference.doc('personalizar002').set(
+              {
+                  'title': 'ir al concierto',
+                  'descrption':'este fin de semana se presenta kygo',
+
+              },
+              ).catchError((error){
+                print('ocurrio un error en la creacion del documento personalizado');
+              },
+              ).whenComplete(() {
+                  print('creacion del documento personalizado completo');
+              },
+              );
+            }, 
+            
+            child: Text(
+              'crear documento personalizado',
+            ),
+            ),
+
+
           ],
         ),
       ),
