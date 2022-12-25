@@ -7,14 +7,29 @@ class HomePage extends StatelessWidget {
   // con este objeto puedo apuntar a la coleccion en firebase 'tasks'
   CollectionReference tasksReference = FirebaseFirestore.instance.collection('tasks');
 
+  // gestiona un flujo de eventos, objetos, enteros, podemos ir controlando
+  
+Stream<int> counter() async*{
+  for(int i = 0; i<10;i++){
+    yield i;
+    await Future.delayed(const Duration(seconds:2));
+  }
+}
+
 
   @override
   
   Widget build(BuildContext context) {
+    counter().listen((event) { 
+      print(event);
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: Text('FIREBASE FIRESTORE'),
       ),
+
+      /*
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +76,7 @@ class HomePage extends StatelessWidget {
                 'agregar documento',
             ),
             ),
-    //actualizaciones 
+           //actualizaciones 
             ElevatedButton(onPressed: (){
               tasksReference.doc('8ElHEKI7nifYRk6EYJhw').update(
                 {
@@ -98,10 +113,10 @@ class HomePage extends StatelessWidget {
             ),
               // crear documento personalizado
                ElevatedButton(onPressed: () {
-              tasksReference.doc('personalizar002').set(
+              tasksReference.doc('personalizar003').set(
               {
                   'title': 'ir al concierto',
-                  'descrption':'este fin de semana se presenta kygo',
+                  'descrption':'este fin de semana se presenta grupo 5, habra chela',
 
               },
               ).catchError((error){
@@ -122,6 +137,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      */
       
     );
   }
