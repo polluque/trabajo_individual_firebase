@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
   CollectionReference tasksReference = FirebaseFirestore.instance.collection('tasks');
 
   // gestiona un flujo de eventos, objetos, enteros, podemos ir controlando
-  
+// es un future pero contiene una cadena 
 Stream<int> counter() async*{
   for(int i = 0; i<10;i++){
     yield i;
@@ -16,19 +16,34 @@ Stream<int> counter() async*{
   }
 }
 
+// retorno de un valor unico
+ Future<int> getNumber() async {
+   return 1000;
+ } // podemos construiro con un futurebuilder
 
   @override
   
   Widget build(BuildContext context) {
-    counter().listen((event) { 
+    /*counter().listen((event) { 
       print(event);
-    });
+    });*/
+
 
     return Scaffold(
       appBar: AppBar(
         title: Text('FIREBASE FIRESTORE'),
       ),
-
+      body: StreamBuilder(
+        stream: counter(),
+        builder: (BuildContext context, AsyncSnapshot snapshot){
+          if(snapshot.hasData){
+                int data = snapshot.data;
+                return Center(child: Text(data.toString(), style: TextStyle(fontSize:50),),);
+          }
+          return Center(child: CircularProgressIndicator(),);
+        },
+      ),
+      
       /*
       body: Center(
         child: Column(
@@ -140,5 +155,31 @@ Stream<int> counter() async*{
       */
       
     );
+    
   }
 }
+
+
+/*
+void main() {
+ // stream
+  counter ().listen((value){
+    print(value);
+  });
+}
+// retorno de un valor unico
+ Future<int> getNumber() async {
+   return 1000;
+   //la funcion termina aqui
+ }
+
+// gestiona un flujo de eventos, objetos, enteros, podemos ir controlando
+Stream<int> counter() async*{
+  for(int i = 0; i<10;i++){
+    yield i;
+    await Future.delayed(Duration(seconds:2));
+  }
+  
+}
+
+*/
