@@ -9,12 +9,15 @@ class HomePage extends StatelessWidget {
 
   // gestiona un flujo de eventos, objetos, enteros, podemos ir controlando
 // es un future pero contiene una cadena 
+
+/*
 Stream<int> counter() async*{
   for(int i = 0; i<10;i++){
     yield i;
     await Future.delayed(const Duration(seconds:2));
   }
 }
+*/
 
 // retorno de un valor unico
  Future<int> getNumber() async {
@@ -34,6 +37,28 @@ Stream<int> counter() async*{
         title: Text('FIREBASE FIRESTORE'),
       ),
       body: StreamBuilder(
+        stream: tasksReference.snapshots(),
+        builder: (BuildContext context, AsyncSnapshot snap){
+          if(snap.hasData){
+            QuerySnapshot collection = snap.data;
+            List<QueryDocumentSnapshot> docs = collection.docs;
+            List<Map<String, dynamic>> docsMap = docs.map((e) => e.data() as Map<String, dynamic>).toList();
+            print(docsMap);
+            return ListView.builder(
+              itemCount: docsMap.length, 
+              itemBuilder : (BuildContext context, int index){
+                return ListTile(
+                  title: Text(docsMap[index]['title']),
+                );
+              },
+              );
+          }
+          return Center(child: CircularProgressIndicator(),);
+        },
+      ),
+      
+
+      /*StreamBuilder(
         stream: counter(),
         builder: (BuildContext context, AsyncSnapshot snapshot){
           if(snapshot.hasData){
@@ -43,7 +68,9 @@ Stream<int> counter() async*{
           return Center(child: CircularProgressIndicator(),);
         },
       ),
+      */
       
+
       /*
       body: Center(
         child: Column(
